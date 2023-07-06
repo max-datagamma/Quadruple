@@ -143,14 +143,14 @@ public class Quadruple extends Number implements Comparable<Quadruple> {
                                                             // This is the best one I could imagine.
 
   /** The value of the exponent (biased) corresponding to subnormal values; equals to 0
-  * Deprecated, will be removed in release version. Use {@link EXPONENT_OF_SUBNORMAL} instead */
+  * Deprecated, will be removed in release version. Use {@link Quadruple#EXPONENT_OF_SUBNORMAL} instead */
   @Deprecated
   public static final int EXP_SUB                 = 0;
   /** The value of the exponent (biased) corresponding to subnormal values; equals to 0 */
   public static final int EXPONENT_OF_SUBNORMAL   = 0;
 
   /** The value of the exponent (biased) corresponding to {@code MIN_NORMAL}; equals to 1
-   * Deprecated, will be removed in release version. Use {@link EXPONENT_OF_MIN_NORMAL} instead */
+   * Deprecated, will be removed in release version. Use {@link Quadruple#EXPONENT_OF_MIN_NORMAL} instead */
   @Deprecated
   public static final int EXP_MIN                 = 1;
   /** The value of the exponent (biased) corresponding to {@code MIN_NORMAL}; equals to 1 */
@@ -3778,7 +3778,7 @@ public class Quadruple extends Number implements Comparable<Quadruple> {
    * Merges the {@code byte} items of the given array into longs, 8 bytes per each long, and returns
    * an array of longs containing the bits of the original bytes, in the big-endian order.
    * The most significant bit of {@code bytes[0]} becomes the MSB of result[0], etc.
-   * @param longs an array of longs to be split
+   * @param bytes an array of bytes to be merged
    * @return an array of resulting bytes
    */
   private static long[] mergeBytesToLongs(byte[] bytes) {
@@ -5313,9 +5313,9 @@ public class Quadruple extends Number implements Comparable<Quadruple> {
   /**
    * Appends the found digit to the calculated root at the position specified by rootBitNumber.
    * for cases where the digit can fall on a word boundary
-   * @param root a buffer containing the bits of the root found so far
+   * @param buff a buffer containing the bits of the root found so far
    * @param digit a value of the digit to append
-   * @param rootBitNumber the position to place the most significant bit of the digit at, counting from MSB
+   * @param bitNumber the position to place the most significant bit of the digit at, counting from MSB
    */
   private static void addDigitToBuff(long[] buff, long digit, int bitNumber) { //
     final int buffIdx = bitNumber / 64;
@@ -5420,14 +5420,5 @@ public class Quadruple extends Number implements Comparable<Quadruple> {
   private static long[] multPacked3x64(long[] factor1, long[] factor2) {
     multPacked3x64_simply(factor1, factor2);
     return pack_12x32_to_3x64(BUFFER_12x32, factor1);
-  } // private static long[] multPacked3x64(long[] factor1, long[] factor2) {
-
-  @SuppressWarnings("unused")
-  private static void dummy() { // Just to prevent removing static import of 'say' from imports
-    // 20.10.02 13:18:53 TO DO The imports used for debugging, to be removed after it's finished
-//    say(AuxMethods.hexStr(BUFFER_6x32_A));
-//    say(hexStr_u(BUFFER_6x32_A));
-//    say(hexStr_(BUFFER_6x32_A));
-  } // private static void dummy() { // Just to prevent removing static import of 'say' from imports
-
+  }
 }
